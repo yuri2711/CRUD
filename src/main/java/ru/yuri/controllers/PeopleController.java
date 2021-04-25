@@ -34,6 +34,6 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute("person") Person person){
         peopleDAO.save(person);
-        return "redirect:/people/index";
+        return "redirect:/people";
     }
 }
