@@ -36,4 +36,19 @@ public class PeopleController {
         peopleDAO.save(person);
         return "redirect:/people";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", peopleDAO.show(id));
+        return "people/edit";
+    }
+    @PatchMapping("/{id}") public  String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+        peopleDAO.update(id, person);
+        return "redirect:/people";
+    }
+    @DeleteMapping("/{id}")
+    public  String delete(@PathVariable("id") int id){
+        peopleDAO.delete(id);
+        return "redirect:/people";
+    }
 }
