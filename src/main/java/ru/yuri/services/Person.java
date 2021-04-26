@@ -3,11 +3,16 @@ package ru.yuri.services;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Getter
 @Setter
+@Entity
 public class Person {
 
-    private int id;
+    @Id
+    private long id;
     private String name;
     private String lastname;
     private int ago;
@@ -27,4 +32,5 @@ public class Person {
 
     public Person() {
     }
+
 }
