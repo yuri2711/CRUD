@@ -4,15 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.yuri.DAO.PeopleDAO;
-import ru.yuri.services.Person;
+import ru.yuri.DAO.PeopleDAOImpl;
+import ru.yuri.model.Person;
+import ru.yuri.services.PersonServiceImpl;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
-    @Autowired
-    private PeopleDAO peopleDAO;
+    private final PeopleDAOImpl peopleDAO;
+
+    public PeopleController(PeopleDAOImpl peopleDAO) {
+        this.peopleDAO = peopleDAO;
+    }
 
     @GetMapping()
     public String index(Model model) {
@@ -21,8 +25,8 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
-        model.addAttribute("person", peopleDAO.show(id));
+    public String get(@PathVariable("id") int id, Model model){
+        model.addAttribute("person", peopleDAO.get(id));
         return "people/show";
     }
 
@@ -39,11 +43,12 @@ public class PeopleController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("person", peopleDAO.show(id));
+        model.addAttribute("person", peopleDAO.get(id));
         return "people/edit";
     }
-    @PatchMapping("/{id}") public  String update(@ModelAttribute("person") Person person, @PathVariable("id") Long id){
-        peopleDAO.update(id);
+    @PatchMapping()
+    public  String update(@ModelAttribute("person") Person person){
+        peopleDAO.update(person);
         return "redirect:/people";
     }
     @DeleteMapping("/{id}")
