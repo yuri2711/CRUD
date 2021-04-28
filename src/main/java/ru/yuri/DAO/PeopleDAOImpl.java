@@ -30,14 +30,11 @@ public class PeopleDAOImpl implements PeopleDAO {
 
     @Override
     public void update(Person person) {
-        Person p = get((int) person.getId());
-        manager.detach(p);
         manager.merge(person);
     }
 
     @Override
     public void delete(int id) {
-        Person person = get(id);
-        manager.remove(person);
+        manager.remove(get(id));
     }
 }
