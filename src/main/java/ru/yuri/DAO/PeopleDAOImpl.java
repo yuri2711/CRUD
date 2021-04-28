@@ -1,7 +1,7 @@
 package ru.yuri.DAO;
 
 import org.springframework.stereotype.Repository;
-import ru.yuri.model.Person;
+import ru.yuri.model.People;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,22 +14,22 @@ public class PeopleDAOImpl implements PeopleDAO {
     EntityManager manager;
 
     @Override
-    public List<Person> index() {
-        return manager.createQuery("select p from Person p").getResultList();
+    public List<People> index() {
+        return manager.createQuery("select p from People p").getResultList();
     }
 
     @Override
-    public Person get(int id) {
-        return manager.find(Person.class, new Long(id));
+    public People get(int id) {
+        return manager.find(People.class, new Long(id));
     }
 
     @Override
-    public void save(Person person) {
+    public void save(People person) {
         manager.persist(person);
     }
 
     @Override
-    public void update(Person person) {
+    public void update(People person) {
         manager.merge(person);
     }
 
