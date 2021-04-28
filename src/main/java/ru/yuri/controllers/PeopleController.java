@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.yuri.model.Person;
-import ru.yuri.services.PersonService;
+import ru.yuri.model.People;
+import ru.yuri.services.PeopleService;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
     @Autowired
-    private PersonService service;
+    private PeopleService service;
 
     @GetMapping()
     public String index(Model model) {
@@ -27,11 +27,11 @@ public class PeopleController {
 
     @GetMapping("/new")
     public String newPerson(Model model){
-        model.addAttribute("person", new Person());
+        model.addAttribute("person", new People());
         return "people/news";
     }
     @PostMapping()
-    public String create(@ModelAttribute("person") Person person){
+    public String create(@ModelAttribute("person") People person){
         service.save(person);
         return "redirect:/people";
     }
@@ -42,7 +42,7 @@ public class PeopleController {
         return "people/edit";
     }
     @PatchMapping("/{id}")
-    public  String update(@ModelAttribute("person") Person person){
+    public  String update(@ModelAttribute("person") People person){
         service.update(person);
         return "redirect:/people";
     }

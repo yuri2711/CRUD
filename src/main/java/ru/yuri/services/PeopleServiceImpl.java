@@ -4,39 +4,39 @@ package ru.yuri.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yuri.DAO.PeopleDAO;
-import ru.yuri.model.Person;
+import ru.yuri.model.People;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @Transactional
-public class PersonServiceImpl implements PersonService {
+public class PeopleServiceImpl implements PeopleService {
 
     private final PeopleDAO peopleDAO;
 
     @Autowired
-    public PersonServiceImpl(PeopleDAO peopleDAO) {
+    public PeopleServiceImpl(PeopleDAO peopleDAO) {
         this.peopleDAO = peopleDAO;
     }
 
     @Override
-    public List<Person> index() {
+    public List<People> index() {
         return peopleDAO.index();
     }
 
     @Override
-    public Person get(int id) {
+    public People get(int id) {
         return peopleDAO.get(id);
     }
 
     @Override
-    public void save(Person person) {
+    public void save(People person) {
         peopleDAO.save(person);
     }
 
     @Override
-    public void update(Person person) {
+    public void update(People person) {
         peopleDAO.update(person);
     }
 
