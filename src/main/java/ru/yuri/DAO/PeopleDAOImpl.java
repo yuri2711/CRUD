@@ -24,13 +24,13 @@ public class PeopleDAOImpl implements PeopleDAO {
     }
 
     @Override
-    public void save(People person) {
-        manager.persist(person);
+    public void save(People people) {
+        manager.persist(people);
     }
 
     @Override
-    public void update(People person) {
-        manager.merge(person);
+    public void update(People people) {
+        manager.merge(people);
     }
 
     @Override

@@ -31,8 +31,8 @@ public class PeopleController {
         return "people/news";
     }
     @PostMapping()
-    public String create(@ModelAttribute("person") People person){
-        service.save(person);
+    public String create(@ModelAttribute("person") People people){
+        service.save(people);
         return "redirect:/people";
     }
 
@@ -42,8 +42,8 @@ public class PeopleController {
         return "people/edit";
     }
     @PatchMapping("/{id}")
-    public  String update(@ModelAttribute("person") People person){
-        service.update(person);
+    public  String update(@ModelAttribute("person") People people){
+        service.update(people);
         return "redirect:/people";
     }
     @DeleteMapping("/{id}")

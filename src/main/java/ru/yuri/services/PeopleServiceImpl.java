@@ -31,13 +31,13 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public void save(People person) {
-        peopleDAO.save(person);
+    public void save(People people) {
+        peopleDAO.save(people);
     }
 
     @Override
-    public void update(People person) {
-        peopleDAO.update(person);
+    public void update(People people) {
+        peopleDAO.update(people);
     }
 
     @Override

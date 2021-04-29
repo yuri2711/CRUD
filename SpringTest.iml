@@ -17,6 +17,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="SpringTest" />
+          <factory-entry name="getEntityManager" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
