@@ -60,6 +60,12 @@ public class AdminController {
         return "redirect:/admin/index";
     }
 
+    @DeleteMapping("/{id}")
+    public String delete(@ModelAttribute("person") People people) {
+        getSetListRole(people);
+        service.delete((int) people.getId());
+        return "redirect:/admin/index";
+    }
     private Set<Role> getSetListRole(People people) {
         Set<Role> roleSet = new HashSet<>();
 
