@@ -45,22 +45,6 @@ public class PeopleDAOImpl implements PeopleDAO {
     @Override
     public UserDetails getUserByName(String username) {
 
-        if (index().size() == 0) {
-            System.out.println("Список пользователей = " + index().size());
-            Role role = new Role("ROLE_ADMIN");
-            Role role1 = new Role("ROLE_USER");
-            Set<Role> roles = new HashSet<>();
-            roles.add(role);
-            saveRole(role);
-            saveRole(role1);
-            People people = new People();
-            people.setName("ADMIN");
-            people.setPass("ADMIN");
-            people.setAge(35);
-            people.setRoles(roles);
-            save(people);
-        }
-
         return (UserDetails) manager.
                 createQuery("select p from People p where p.name=:namePerson").setParameter("namePerson", username).getSingleResult();
     }
